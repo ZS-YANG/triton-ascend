@@ -577,6 +577,12 @@ def linalg_to_bin_enable_npu_compile_910_95(linalg: str, metadata, opt):
         if enable_auto_vectorize_v2 is not None:
             _compile_option_list += \
                 [f"--enable-auto-vectorize-v2={enable_auto_vectorize_v2}"]
+            
+        enable_tree_reduce = metadata["enable_tree_reduce"]
+        if enable_tree_reduce is not None:
+            _compile_option_list += \
+                [f"--enable-tree-reduce-mode={enable_tree_reduce}"]
+            
         auto_vectorize_v2_max_fused_ops_num = metadata["auto_vectorize_v2_max_fused_ops_num"]
         if auto_vectorize_v2_max_fused_ops_num is not None:
             _compile_option_list += \
@@ -954,6 +960,7 @@ class NPUOptions:
     enable_drop_unit_dims: bool = None
     enable_flatten: bool = None
     enable_auto_vectorize_v2: bool = None
+    enable_tree_reduce: str = None
     auto_vectorize_v2_max_fused_ops_num: int = None
     prevec_max_fused_ops_num: int = None
     inject_barrier_all: bool = None
